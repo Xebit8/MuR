@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Murr.View;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace Murr
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LandingPage());
         }
 
         protected override void OnStart()
