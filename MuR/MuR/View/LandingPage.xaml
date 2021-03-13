@@ -4,9 +4,8 @@
              x:Class="Murr.View.LandingPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Play!" x:Name="btn1" Clicked="ToPlay"/>
+            <Button Text="Stop!" x:Name="btn2" Clicked="ToPause"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

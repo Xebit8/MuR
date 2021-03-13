@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murr.Android", "Murr\Murr.Android\Murr.Android.csproj", "{E2BD069B-220C-47BC-B798-3E2A03E76042}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuR.Android", "MuR\MuR.Android\MuR.Android.csproj", "{E2BD069B-220C-47BC-B798-3E2A03E76042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murr.iOS", "Murr\Murr.iOS\Murr.iOS.csproj", "{62DDAA1F-1981-4A9A-B29F-003F35E8B32E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuR.iOS", "MuR\MuR.iOS\MuR.iOS.csproj", "{62DDAA1F-1981-4A9A-B29F-003F35E8B32E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murr", "Murr\Murr\Murr.csproj", "{1765DEA0-C662-4548-AD78-39ABF550BA90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuR", "MuR\MuR\MuR.csproj", "{1765DEA0-C662-4548-AD78-39ABF550BA90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
