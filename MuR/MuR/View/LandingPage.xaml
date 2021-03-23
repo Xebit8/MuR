@@ -5,7 +5,6 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Play!" x:Name="btn1" Clicked="ToPlay"/>
-            <Button Text="Stop!" x:Name="btn2" Clicked="ToPause"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

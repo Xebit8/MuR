@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Murr.View;
 using MediaManager;
-using SpotifyAPI.Web;
 
 
 namespace Murr.View
@@ -21,14 +20,25 @@ namespace Murr.View
         {
             InitializeComponent();
         }
-        //public async void ToPlay(object sender, EventArgs e)
-        //{
-            
-        //}
-        //public async void ToPause(object sender, EventArgs e)
-        //{
-            //await CrossMediaManager.Current.Pause();
-        //}
+        
+        public void LocalToPlay()
+        {
+            string[] fileTypes = null;
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                fileTypes = new string[] { "audio/mpeg" };
+            }
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                fileTypes = new string[] { "public.audio" };
+            }
+        }
+
+        public async void ToPlay(object  sender, EventArgs args)
+        {
+            string audiourl = "https://ia800605.us.archive.org/32/items/Mp3Playlist_555/Daughtry-Homeacoustic.mp3";
+            await CrossMediaManager.Current.Play(audiourl);
+        }
 
     }
 }
