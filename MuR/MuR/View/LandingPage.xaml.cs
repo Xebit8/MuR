@@ -8,37 +8,31 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Murr.View;
 using MediaManager;
-
+using Xamarin.Essentials;
+using MuR.Model;
 
 namespace Murr.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandingPage : ContentPage
     {
-
         public LandingPage()
         {
             InitializeComponent();
+            
+            
         }
-        
-        public void LocalToPlay()
+        public async void PickAudioFile(object sender, EventArgs args)
         {
-            string[] fileTypes = null;
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                fileTypes = new string[] { "audio/mpeg" };
-            }
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                fileTypes = new string[] { "public.audio" };
-            }
+            var files = (await FilePicker.PickMultipleAsync(CrossFileManipulation.optionsPicket)).ToArray();
+            CrossFileManipulation.LoadToCache(files);
         }
-
-        public async void ToPlay(object  sender, EventArgs args)
+        public async void LocalToPlay(object sender, EventArgs args)
         {
-            string audiourl = "https://ia800605.us.archive.org/32/items/Mp3Playlist_555/Daughtry-Homeacoustic.mp3";
-            await CrossMediaManager.Current.Play(audiourl);
-        }
+            foreach (var item in CrossFileManipulation.LoadFromExternalCache())
+                CrossMediaManager.Current.Queue.Add(item);
 
+            await CrossMediaManager.Current.Play();
+        }
     }
 }
