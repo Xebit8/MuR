@@ -7,9 +7,13 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using MediaManager;
+using System.IO;
 
 namespace Murr.Droid
 {
+    
+
+
     [Activity(Label = "Murr", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -30,6 +34,7 @@ namespace Murr.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            
         }
     }
 }
