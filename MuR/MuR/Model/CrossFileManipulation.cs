@@ -35,7 +35,7 @@ namespace MuR.Model
             foreach (var item in files)
             {
                 file = new FileInfo(item.FullPath);
-                var filesPath = Path.Combine(Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalCacheDirectory(), file.Name);
+                var filesPath = Path.Combine(Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalDirectory(typeFiles.Audio), file.Name);
                 if (!File.Exists(filesPath))
                     File.WriteAllBytes(filesPath, File.ReadAllBytes(file.FullName));
             }
@@ -47,7 +47,7 @@ namespace MuR.Model
         /// <returns>список медиа объектов</returns>
         internal static IList<MediaManager.Library.IMediaItem> LoadFromExternalCache()
         {
-            var filesPath = Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalCacheDirectory();
+            var filesPath = Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalDirectory(typeFiles.Audio);
             DirectoryInfo directory = new DirectoryInfo(filesPath);
             FileInfo[] files = directory.GetFiles();
             List<MediaManager.Library.IMediaItem> mediaItems = new List<MediaManager.Library.IMediaItem>(files.Length);
@@ -69,7 +69,7 @@ namespace MuR.Model
         /// <returns>преобразованный файл</returns>
         internal static MediaManager.Library.IMediaItem GetAudio(string fileName)
         {
-            var filesPath = Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalCacheDirectory();
+            var filesPath = Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalDirectory(typeFiles.Audio);
             string findFilePath;
             if(File.Exists(findFilePath = Path.Combine(filesPath, fileName)))
             {

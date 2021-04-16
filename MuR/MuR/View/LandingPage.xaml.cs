@@ -16,23 +16,28 @@ namespace Murr.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandingPage : ContentPage
     {
+        List<string> paths = new List<string>();
         public LandingPage()
         {
             InitializeComponent();
-            
+
             
         }
         public async void PickAudioFile(object sender, EventArgs args)
-        {
+        {   
             var files = (await FilePicker.PickMultipleAsync(CrossFileManipulation.optionsPicket)).ToArray();
             CrossFileManipulation.LoadToCache(files);
         }
         public async void LocalToPlay(object sender, EventArgs args)
         {
             foreach (var item in CrossFileManipulation.LoadFromExternalCache())
-                CrossMediaManager.Current.Queue.Add(item);
+                CrossMediaManager.Current.Queue.Add(item); 
 
             await CrossMediaManager.Current.Play();
+        }
+        public async void CreateTableBD(object sender, EventArgs args)
+        {
+            var result = await App.Database.CreateTable();
         }
     }
 }

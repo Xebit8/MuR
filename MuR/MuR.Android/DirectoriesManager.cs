@@ -18,17 +18,35 @@ namespace Murr.Droid
     class FileSystemImplementation : IFileSystem
     {
         private readonly Context context = Android.App.Application.Context;
-        // путь к директории хранения файлов приложения
-        public string GetExternalDirectory()
+
+        // <summary>
+        /// имя базы данных
+        /// </summary>
+        public string Database => "Music.db";
+
+        /// <summary>
+        /// Получить путь к директории хранения файлов приложения
+        /// </summary>
+        /// <returns>путь к директории хранения файлов приложения</returns>        
+        public string GetExternalDirectory(typeFiles typePath)
         {
-            var externalDirectory = context.GetExternalFilesDir(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath);
-            return externalDirectory.Path;
-        }
-        // путь к музыке во внешней директории
-        public string GetExternalCacheDirectory()
-        {
-            var filesPath = context.GetExternalFilesDir(Android.OS.Environment.DirectoryMusic);
-            return filesPath.AbsolutePath;
+            Java.IO.File externalDirectory = default;
+            switch (typePath)
+            {
+                case typeFiles.Audio:
+                    externalDirectory = context.GetExternalFilesDir(Android.OS.Environment.DirectoryMusic);
+                    break;
+                case typeFiles.DataBase:
+                    externalDirectory = context.GetDatabasePath(Database);
+                    break;
+                case typeFiles.General:
+                    externalDirectory = context.GetExternalFilesDir(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath);
+                    break;
+                default:
+                    throw new MissingMemberException();
+                    break;
+            }
+            return externalDirectory?.Path;
         }
     }
 }
