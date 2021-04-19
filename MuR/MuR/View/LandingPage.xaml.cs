@@ -10,17 +10,17 @@ using Murr.View;
 using MediaManager;
 using Xamarin.Essentials;
 using MuR.Model;
+using MediaManager.Library;
 
 namespace Murr.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandingPage : ContentPage
     {
+        int counter = 0;
         public LandingPage()
         {
             InitializeComponent();
-            
-            
         }
         public async void PickAudioFile(object sender, EventArgs args)
         {
@@ -32,7 +32,47 @@ namespace Murr.View
             foreach (var item in CrossFileManipulation.LoadFromExternalCache())
                 CrossMediaManager.Current.Queue.Add(item);
 
-            await CrossMediaManager.Current.Play();
+            IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Current;
+            SongData(currentAudioItem);
+
+            counter++;
+
+            if (counter % 2 != 0)
+            {
+                PlayBtn.Source = "Resources/drawable/pause.png";
+
+                await CrossMediaManager.Current.PlayPause();
+            }
+            else if (counter % 2 == 0)
+            {
+                PlayBtn.Source = "Resources/drawable/play.png";
+
+                await CrossMediaManager.Current.Pause();
+            }
+            else if (counter == 0) 
+            {
+                PlayBtn.Source = "Resources/drawable/pause.png";
+
+                await CrossMediaManager.Current.Play();
+            }
+        }
+        public async void SkipFwd(object sender, EventArgs args)
+        {
+            await CrossMediaManager.Current.PlayNext();
+            IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Next;
+            SongData(currentAudioItem);
+        }
+        public async void SkipBack(object sender, EventArgs args)
+        {
+            await CrossMediaManager.Current.PlayPrevious();
+            IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Previous;
+            SongData(currentAudioItem);
+        }
+        public void SongData(IMediaItem currentAudioItem)
+        {
+
+             song_label.Text = currentAudioItem.Title;
+             artist_label.Text = currentAudioItem.Artist;
         }
     }
 }
