@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<<<<<<< HEAD
              x:Class="Murr.View.LandingPage">
     <ContentPage.Content>
         <StackLayout x:Name="auidoList">
@@ -12,3 +13,45 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+=======
+             x:Class="Murr.View.LandingPage"
+             BackgroundImage="Resources/drawable/background.png">
+
+    <StackLayout>
+        <Grid Margin="10">
+            <Label Text ="NOW PLAYING" TextColor="#FFFFFF" FontSize="30" 
+                   FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="10">
+            </Label>
+            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent">
+            </ImageButton>
+            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile">
+            </ImageButton>
+        </Grid>
+        <Grid>
+            <Frame CornerRadius="200" HorizontalOptions="Center" 
+           VerticalOptions="Start"
+           HasShadow="True"
+           Padding="0">
+                <Image Source="Resources/drawable/examle.png" HeightRequest="275" 
+                   WidthRequest="280" 
+                   Aspect="Fill"></Image>
+            </Frame>
+        </Grid>
+        <Grid HeightRequest="130">
+            <Label Text="Song Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
+            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label"></Label>
+        </Grid>
+        <Grid >
+            <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
+            <ImageButton Source="Resources/drawable/play.png" BackgroundColor="Transparent" Clicked="LocalToPlay" x:Name="PlayBtn"></ImageButton>
+            <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Clicked="SkipFwd"></ImageButton>
+        </Grid>
+        <Grid>
+            <ImageButton Source="Resources/drawable/peremeshka.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="10"></ImageButton>
+            <ImageButton Source="Resources/drawable/favorite.png" BackgroundColor="Transparent"></ImageButton>
+            <ImageButton Source="Resources/drawable/repeat.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"></ImageButton>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
+>>>>>>> d2bf642895b8860cbdc1fad8e41a29cf9d215eeb

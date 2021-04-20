@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 using MediaManager;
 
 namespace MuR.Model
-{   
+{
     /// <summary>
     /// манипулирование аудио файлами
     /// </summary>
