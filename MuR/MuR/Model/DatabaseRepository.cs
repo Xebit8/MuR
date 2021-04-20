@@ -23,13 +23,21 @@ namespace MuR.Model
             dbConnection = DependencyService.Get<IToSQLiteDB>().GetConnection();
         }
 
-        public async Task<CreateTableResult> CreateTable()
+        public async Task<CreateTableResult> CreateTable<T>() where T : new()
         {
-            return await DBConnection.CreateTableAsync<Genre>();
+            return await DBConnection.CreateTableAsync<T>();
         }
-        public async Task<List<SQLiteConnection.ColumnInfo>> GetAuthor()
+        public async Task<int> InsertIntoTable<T>(T insertValue) where T : new()
         {
-            return await DBConnection.GetTableInfoAsync("genre");
+            return await DBConnection.InsertAsync(insertValue, typeof(T));
+        }
+        public async Task<List<T>> SelectAllFromTable<T>() where T : new()
+        {
+            return await DBConnection.Table<T>().ToListAsync();
+        }
+        public async void UpdateObjectTable<T>(T updateValue) where T : new()
+        {
+            await DBConnection.UpdateAsync(updateValue, typeof(T));
         }
     }
 }

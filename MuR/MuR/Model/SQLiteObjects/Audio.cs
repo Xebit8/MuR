@@ -12,10 +12,10 @@ namespace MuR.Model.SQLiteObjects
     internal class Audio
     {
         [PrimaryKey, AutoIncrement, Column("audio_id")]
-        public int AudioId { get; }
+        public int AudioId { get; set; }
 
         [Column("name_audio")]
-        public string NameAudio { get; set; } = "Неизвестно";
+        public string NameAudio { get; set; }
 
         [Column("rating")]
         public int Rating { get; set; }
@@ -30,10 +30,10 @@ namespace MuR.Model.SQLiteObjects
         public string UriImage { get; set; }
 
         [Column("genre_id")]
-        public int GenryId { get; set; }
+        public int? GenreId { get; set; }
 
         [Column("author_id")]
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
 
     }
 }

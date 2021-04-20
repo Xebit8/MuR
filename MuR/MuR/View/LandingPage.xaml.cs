@@ -11,6 +11,8 @@ using MediaManager;
 using Xamarin.Essentials;
 using MuR.Model;
 
+using MuR.Model.SQLiteObjects;
+
 namespace Murr.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -35,9 +37,7 @@ namespace Murr.View
 
             await CrossMediaManager.Current.Play();
         }
-        public async void CreateTableBD(object sender, EventArgs args)
-        {
-            var result = await App.Database.CreateTable();
-        }
+        //public async void EditQuerys(object sender, EventArgs args)
+        //{   }
     }
 }

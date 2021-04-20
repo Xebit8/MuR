@@ -8,11 +8,11 @@ namespace MuR.Model.SQLiteObjects
     /// <summary>
     /// сущность базы данных в виде жанра музыки
     /// </summary>
-    [Table("genre_id")]
+    [Table("genre")]
     internal class Genre
     {
         [PrimaryKey, AutoIncrement, Column("genre_id")]
-        public int GenreId { get; }
+        public int GenreId { get; set; }
 
         [NotNull, Unique, Column("name_genre")]
         public string NameGenre { get; set; }

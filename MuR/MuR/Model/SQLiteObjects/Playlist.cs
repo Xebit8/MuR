@@ -12,7 +12,7 @@ namespace MuR.Model.SQLiteObjects
     internal class Playlist
     {
         [PrimaryKey, AutoIncrement, Column("playlist_id")]
-        public int PlayListId { get; }
+        public int PlayListId { get; set; }
 
         [NotNull, Unique, Column("name_playlist")]
         public string NamePlayList { get; set; }
@@ -24,6 +24,6 @@ namespace MuR.Model.SQLiteObjects
         public string UriImage { get; set; }
 
         [Column("genre_id")]
-        public int GenreId { get; set; }
+        public int? GenreId { get; set; }
     }
 }

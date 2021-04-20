@@ -12,12 +12,12 @@ namespace MuR.Model.SQLiteObjects
     internal class PlaylistAudio
     {
         [PrimaryKey, AutoIncrement, Column("playlist_audio_id")]
-        public int PlaylistAudioId { get; }
+        public int PlaylistAudioId { get; set; }
 
-        [NotNull]
-        public int PlaylistId { get; set; }
+        [NotNull, Column("playlist_id")]
+        public int? PlaylistId { get; set; }
 
-        [NotNull]
-        public int AudioId { get; set; }
+        [NotNull, Column("audio_id")]
+        public int? AudioId { get; set; }
     }
 }

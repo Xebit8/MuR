@@ -7,11 +7,11 @@ namespace MuR.Model.SQLiteObjects
     /// <summary>
     /// сущность базы данных в виде автора музыки
     /// </summary>
-    [Table("auhtor")]
+    [Table("author")]
     internal class Author
     {
-        [PrimaryKey, AutoIncrement, Column("auhtor_id")]
-        public int AuhtorId { get; }
+        [PrimaryKey, AutoIncrement, Column("author_id")]
+        public int AuthorId { get; set; }
 
         [NotNull, Unique, Column("name_author")]
         public string NameAuthor { get; set; }
@@ -23,6 +23,8 @@ namespace MuR.Model.SQLiteObjects
         public string UriImage { get; set; }
 
         [Column("genre_id")]
-        public int GenryId { get; set; }
+        public int? GenreId { get; set; }
     }
+
+
 }

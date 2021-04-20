@@ -7,7 +7,7 @@
             <Label x:Name="Answer"></Label>
             <Button Text="Play!" x:Name="btn1" Clicked="LocalToPlay"/>
             <Button Text="Выбрать файлы" x:Name="btn_Info" Clicked="PickAudioFile"/>
-            <Button Text="Создать базу данных" x:Name="btn_create" Clicked="CreateTableBD"/>
+            <Button Text="Создать базу данных" x:Name="btn_create" Clicked="EditQuerys"/>
 
         </StackLayout>
     </ContentPage.Content>
