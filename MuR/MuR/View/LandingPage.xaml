@@ -1,19 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-<<<<<<< HEAD
-             x:Class="Murr.View.LandingPage">
-    <ContentPage.Content>
-        <StackLayout x:Name="auidoList">
-            <Label x:Name="Answer"></Label>
-            <Button Text="Play!" x:Name="btn1" Clicked="LocalToPlay"/>
-            <Button Text="Выбрать файлы" x:Name="btn_Info" Clicked="PickAudioFile"/>
-            <Button Text="Создать базу данных" x:Name="btn_create" Clicked="EditQuerys"/>
-
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
-=======
              x:Class="Murr.View.LandingPage"
              BackgroundImage="Resources/drawable/background.png">
 
@@ -54,4 +41,3 @@
     </StackLayout>
 
 </ContentPage>
->>>>>>> d2bf642895b8860cbdc1fad8e41a29cf9d215eeb

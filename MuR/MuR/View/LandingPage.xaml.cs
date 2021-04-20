@@ -12,36 +12,25 @@ using Xamarin.Essentials;
 using MuR.Model;
 using MediaManager.Library;
 
-using MuR.Model.SQLiteObjects;
-
 namespace Murr.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandingPage : ContentPage
     {
-<<<<<<< HEAD
-        List<string> paths = new List<string>();
-        public LandingPage()
-        {
-            InitializeComponent();
-
-            
-=======
         int counter = 0;
         public LandingPage()
         {
             InitializeComponent();
->>>>>>> d2bf642895b8860cbdc1fad8e41a29cf9d215eeb
         }
         public async void PickAudioFile(object sender, EventArgs args)
-        {   
+        {
             var files = (await FilePicker.PickMultipleAsync(CrossFileManipulation.optionsPicket)).ToArray();
             CrossFileManipulation.LoadToCache(files);
         }
         public async void LocalToPlay(object sender, EventArgs args)
         {
             foreach (var item in CrossFileManipulation.LoadFromExternalCache())
-                CrossMediaManager.Current.Queue.Add(item); 
+                CrossMediaManager.Current.Queue.Add(item);
 
             IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Current;
             SongData(currentAudioItem);
@@ -60,7 +49,7 @@ namespace Murr.View
 
                 await CrossMediaManager.Current.Pause();
             }
-            else if (counter == 0) 
+            else if (counter == 0)
             {
                 PlayBtn.Source = "Resources/drawable/pause.png";
 
@@ -78,10 +67,8 @@ namespace Murr.View
         public void SongData(IMediaItem currentAudioItem)
         {
 
-             song_label.Text = currentAudioItem.Title;
-             artist_label.Text = currentAudioItem.Artist;
+            song_label.Text = currentAudioItem.Title;
+            artist_label.Text = currentAudioItem.Artist;
         }
-        //public async void EditQuerys(object sender, EventArgs args)
-        //{   }
     }
 }
