@@ -59,14 +59,10 @@ namespace Murr.View
         public async void SkipFwd(object sender, EventArgs args)
         {
             await CrossMediaManager.Current.PlayNext();
-            IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Next;
-            SongData(currentAudioItem);
         }
         public async void SkipBack(object sender, EventArgs args)
         {
             await CrossMediaManager.Current.PlayPrevious();
-            IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Previous;
-            SongData(currentAudioItem);
         }
         public void SongData(IMediaItem currentAudioItem)
         {
