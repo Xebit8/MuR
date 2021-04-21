@@ -49,7 +49,7 @@ namespace Murr.View
 
                 await CrossMediaManager.Current.Pause();
             }
-            else if (counter == 0) 
+            else if (counter == 0)
             {
                 PlayBtn.Source = "Resources/drawable/pause.png";
 
@@ -67,8 +67,8 @@ namespace Murr.View
         public void SongData(IMediaItem currentAudioItem)
         {
 
-             song_label.Text = currentAudioItem.Title;
-             artist_label.Text = currentAudioItem.Artist;
+            song_label.Text = currentAudioItem.Title;
+            artist_label.Text = currentAudioItem.Artist;
         }
     }
 }
