@@ -22,7 +22,11 @@ namespace MuR.Model
         {
             dbConnection = DependencyService.Get<IToSQLiteDB>().GetConnection();
         }
-
+        /// <summary>
+        /// Создать таблицу
+        /// </summary>
+        /// <typeparam name="T">тип на основе которого будет создаваться таблица</typeparam>
+        /// <returns>была ли таблица создана</returns>
         public async Task<CreateTableResult> CreateTable<T>() where T : new()
         {
             return await DBConnection.CreateTableAsync<T>();

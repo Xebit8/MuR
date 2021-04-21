@@ -17,7 +17,8 @@ namespace Murr.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandingPage : ContentPage
     {
-        int counter = 0;
+        int play_counter = 0;
+        int menu_counter = 0;
         public LandingPage()
         {
             InitializeComponent();
@@ -35,26 +36,42 @@ namespace Murr.View
             IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Current;
             SongData(currentAudioItem);
 
-            counter++;
+<<<<<<< HEAD
+            
+=======
+            play_counter++;
+>>>>>>> 99855ab85a0186c663e06fa2c9d07e1ab6ec4da9
 
-            if (counter % 2 != 0)
+            if (play_counter % 2 != 0)
             {
                 PlayBtn.Source = "Resources/drawable/pause.png";
 
                 await CrossMediaManager.Current.PlayPause();
             }
-            else if (counter % 2 == 0)
-            {
-                PlayBtn.Source = "Resources/drawable/play.png";
-
-                await CrossMediaManager.Current.Pause();
-            }
+<<<<<<< HEAD
             else if (counter == 0)
             {
                 PlayBtn.Source = "Resources/drawable/pause.png";
 
                 await CrossMediaManager.Current.Play();
             }
+            else if (counter % 2 == 0)
+=======
+            else if (play_counter % 2 == 0)
+>>>>>>> 99855ab85a0186c663e06fa2c9d07e1ab6ec4da9
+            {
+                PlayBtn.Source = "Resources/drawable/play.png";
+
+                await CrossMediaManager.Current.Pause();
+            }
+<<<<<<< HEAD
+=======
+            else if (play_counter == 0)
+            {
+                PlayBtn.Source = "Resources/drawable/pause.png";
+>>>>>>> 99855ab85a0186c663e06fa2c9d07e1ab6ec4da9
+
+            counter++;
         }
         public async void SkipFwd(object sender, EventArgs args)
         {
@@ -70,5 +87,21 @@ namespace Murr.View
             song_label.Text = currentAudioItem.Title;
             artist_label.Text = currentAudioItem.Artist;
         }
+        public void Menu(object sender, EventArgs args)
+        {
+
+            play_counter++;
+
+            if (play_counter % 2 != 0)
+            {
+                BackgroundImageSource = "Resources/drawable/background2.png";
+                songPic.Source = "Resources/drawable/examle2.png";
+            }
+            else if (play_counter % 2 == 0)
+            {
+                BackgroundImageSource = "Resources/drawable/background.png";
+                songPic.Source = "Resources/drawable/examle.png";
+            }
+        } 
     }
 }

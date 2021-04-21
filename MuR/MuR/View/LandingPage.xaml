@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Murr.View.LandingPage"
-             BackgroundImage="Resources/drawable/background.png">
+             BackgroundImage="Resources/drawable/background.png"
+             NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
         <Grid Margin="10">
             <Label Text ="NOW PLAYING" TextColor="#FFFFFF" FontSize="30" 
                    FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="10">
             </Label>
-            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent">
+            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="Menu">
             </ImageButton>
             <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile">
             </ImageButton>
@@ -21,14 +22,16 @@
            Padding="0">
                 <Image Source="Resources/drawable/examle.png" HeightRequest="275" 
                    WidthRequest="280" 
-                   Aspect="Fill"></Image>
+                   Aspect="Fill" x:Name="songPic"></Image>
             </Frame>
         </Grid>
-        <Grid HeightRequest="130">
+        <Grid >
             <Label Text="Song Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
+        </Grid>
+        <Grid>
             <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label"></Label>
         </Grid>
-        <Grid >
+        <Grid>
             <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
             <ImageButton Source="Resources/drawable/play.png" BackgroundColor="Transparent" Clicked="LocalToPlay" x:Name="PlayBtn"></ImageButton>
             <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Clicked="SkipFwd"></ImageButton>
