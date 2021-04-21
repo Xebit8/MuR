@@ -29,6 +29,8 @@ namespace Murr.Droid
             ReWriteDataBase(new FileSystemImplementation());
 
             LoadApplication(new App());
+            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(90, 90, 90));
+            Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(90, 90, 90));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
