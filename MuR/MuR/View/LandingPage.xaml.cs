@@ -36,11 +36,7 @@ namespace Murr.View
             IMediaItem currentAudioItem = CrossMediaManager.Current.Queue.Current;
             SongData(currentAudioItem);
 
-<<<<<<< HEAD
-            
-=======
             play_counter++;
->>>>>>> 99855ab85a0186c663e06fa2c9d07e1ab6ec4da9
 
             if (play_counter % 2 != 0)
             {
@@ -48,30 +44,18 @@ namespace Murr.View
 
                 await CrossMediaManager.Current.PlayPause();
             }
-<<<<<<< HEAD
-            else if (counter == 0)
-            {
-                PlayBtn.Source = "Resources/drawable/pause.png";
-
-                await CrossMediaManager.Current.Play();
-            }
-            else if (counter % 2 == 0)
-=======
             else if (play_counter % 2 == 0)
->>>>>>> 99855ab85a0186c663e06fa2c9d07e1ab6ec4da9
             {
                 PlayBtn.Source = "Resources/drawable/play.png";
 
                 await CrossMediaManager.Current.Pause();
             }
-<<<<<<< HEAD
-=======
             else if (play_counter == 0)
             {
                 PlayBtn.Source = "Resources/drawable/pause.png";
->>>>>>> 99855ab85a0186c663e06fa2c9d07e1ab6ec4da9
 
-            counter++;
+                await CrossMediaManager.Current.Play();
+            }
         }
         public async void SkipFwd(object sender, EventArgs args)
         {
