@@ -1,46 +1,182 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Murr.View.LandingPage"
-             BackgroundImage="Resources/drawable/background.png"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage
+    x:Class="Murr.View.LandingPage"           
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=netstandard"
+    mc:Ignorable="d"
+    BackgroundImage="Resources/drawable/bacgplaylist.jpg"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid Padding="1" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-    <StackLayout>
-        <Grid Margin="10">
-            <Label Text ="NOW PLAYING" TextColor="#FFFFFF" FontSize="30" 
-                   FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="10">
-            </Label>
-            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="Menu">
+            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="ToPlayerPage" Margin="10">
             </ImageButton>
-            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile">
+            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile" Margin="10">
             </ImageButton>
-        </Grid>
-        <Grid>
-            <Frame CornerRadius="200" HorizontalOptions="Center" 
-           VerticalOptions="Start"
-           HasShadow="True"
-           Padding="0">
-                <Image Source="Resources/drawable/examle.png" HeightRequest="275" 
-                   WidthRequest="280" 
-                   Aspect="Fill" x:Name="songPic"></Image>
-            </Frame>
-        </Grid>
-        <Grid >
-            <Label Text="Song Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
-        </Grid>
-        <Grid>
-            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label"></Label>
-        </Grid>
-        <Grid>
-            <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
-            <ImageButton Source="Resources/drawable/play.png" BackgroundColor="Transparent" Clicked="LocalToPlay" x:Name="PlayBtn"></ImageButton>
-            <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Clicked="SkipFwd"></ImageButton>
-        </Grid>
-        <Grid>
-            <ImageButton Source="Resources/drawable/peremeshka.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="10"></ImageButton>
-            <ImageButton Source="Resources/drawable/favorite.png" BackgroundColor="Transparent"></ImageButton>
-            <ImageButton Source="Resources/drawable/repeat.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"></ImageButton>
-        </Grid>
-    </StackLayout>
 
+            <Grid Grid.Row="1" Padding="0,1,0,1">
+                <Grid ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Resources/drawable/examle.png" 
+                  x:Name="songPic"></Image>
+                    <Grid Grid.Row="1">
+                        <Label Text="Playlist Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="playlist_label" TextColor="White"></Label>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Label Text="Number of songs" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="Number_of_songs_label" TextColor="White" Margin="35"></Label>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <CollectionView
+                x:Name="CollectionView"
+                Grid.Row="2"
+                ItemsLayout="VerticalList"
+                VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                            Padding="1,10,1,10"
+                            ColumnSpacing="0"
+                            RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Margin="20,0,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HeightRequest="60"
+                                HorizontalOptions="Start"
+                                Text="Number Song"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand"
+                                VerticalTextAlignment="Center" />
+
+                                <BoxView
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Margin="0,5,0,5"
+                                WidthRequest="1"
+                                Color="Transparent" />
+
+                                <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="20,0,0,0"
+                                FontSize="Medium"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1"
+                                Text="Title"
+                                TextColor="White"
+                                VerticalOptions="End" />
+                                <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="20,0,0,0"
+                                FontSize="Medium"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1"
+                                Text="Binding Artist"
+                                TextColor="White"
+                                VerticalOptions="Start" />
+
+                            <ImageButton
+                                Source="Resources/drawable/play.png"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="3" />
+                        </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            <Grid Grid.Row="5" Padding="0,1,0,1">
+                <Frame
+                    Margin="0,0,0,0"
+                    BackgroundColor="Transparent"
+                    CornerRadius="2"
+                    HasShadow="False">
+                    <Grid ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            x:Name="LabelCurrentTrackIndex"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            MaxLines="1"
+                            Text="CURRENT TRACK: -/-"
+                            TextColor="White"
+                            VerticalOptions="End"
+                            BackgroundColor="#1A222D">
+                        </Label>
+                        <Label
+                            x:Name="LabelCurrentTrackTitle"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            MaxLines="1"
+                            Text="-"
+                            TextColor="White"
+                            VerticalOptions="Start"
+                            BackgroundColor="#1A222D">
+                        </Label>
+
+                        <ImageButton
+                            Source="Resources/drawable/play.png"
+                            x:Name="ButtonPlayPause"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="End"                           
+                            VerticalOptions="CenterAndExpand">
+                        </ImageButton>
+                    </Grid>
+                </Frame>
+            </Grid>
+            </Grid>
+        
+    </ContentPage.Content>
 </ContentPage>
