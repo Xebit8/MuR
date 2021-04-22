@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Murr.View;
+using MuR.View;
 using MediaManager;
 using Xamarin.Essentials;
 using MuR.Model;
 using MediaManager.Library;
 using System.Windows.Input;
 
-namespace Murr.View
+namespace MuR.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LandingPage : ContentPage

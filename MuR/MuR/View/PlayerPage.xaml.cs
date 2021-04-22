@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Murr.View;
+using MuR.View;
 using MediaManager;
 using Xamarin.Essentials;
 using MuR.Model;
@@ -17,7 +17,7 @@ using MediaManager.Player;
 using MediaManager.Queue;
 using PositionChangedEventArgs = MediaManager.Playback.PositionChangedEventArgs;
 
-namespace Murr.View
+namespace MuR.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlayerPage : ContentPage
@@ -39,12 +39,19 @@ namespace Murr.View
         }
         public async void LocalToPlay(object sender, EventArgs args)
         {
-            foreach (var item in CrossFileManipulation.LoadFromExternalCache())
-                CrossMediaManager.Current.Queue.Add(item);
+
+            foreach (var item in await App.Database.SelectAllFromTable<MuR.Model.SQLiteObjects.Audio>())
+                CrossMediaManager.Current.Queue.Add(CrossFileManipulation.GetAudio(item.UriFile));
 
             play_counter++;
 
-            if (play_counter % 2 != 0)
+            if (play_counter == 0)
+            {
+                PlayBtn.Source = "Resources/drawable/pause.png";
+
+                await CrossMediaManager.Current.Play();
+            }
+            else if (play_counter % 2 != 0)
             {
                 PlayBtn.Source = "Resources/drawable/pause.png";
 
@@ -56,12 +63,6 @@ namespace Murr.View
 
                 await CrossMediaManager.Current.Pause();
             }
-            else if (play_counter == 0)
-            {
-                PlayBtn.Source = "Resources/drawable/pause.png";
-
-                await CrossMediaManager.Current.Play();
-            }
         }
         private async void SkipFwd(object sender, EventArgs args)
         {
@@ -70,6 +71,20 @@ namespace Murr.View
         private async void SkipBack(object sender, EventArgs args)
         {
             await CrossMediaManager.Current.PlayPrevious();
+        }
+        private void Shuffle(object sender, EventArgs args)
+        {
+            if(CrossMediaManager.Current.ShuffleMode == ShuffleMode.All)
+                CrossMediaManager.Current.ShuffleMode = ShuffleMode.Off;
+            else
+                CrossMediaManager.Current.ShuffleMode = ShuffleMode.All;
+        }
+        private void Repeat(object sender, EventArgs args)
+        {
+            if (CrossMediaManager.Current.RepeatMode == RepeatMode.All)
+                CrossMediaManager.Current.RepeatMode = RepeatMode.Off;
+            else if (CrossMediaManager.Current.RepeatMode == RepeatMode.Off)
+                CrossMediaManager.Current.RepeatMode = RepeatMode.All;
         }
         private void SetupCurrentMediaDetails(IMediaItem currentMediaItem)
         {

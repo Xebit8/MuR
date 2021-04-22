@@ -12,8 +12,8 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(Murr.Droid.FileSystemImplementation))]
-namespace Murr.Droid
+[assembly: Dependency(typeof(MuR.Droid.FileSystemImplementation))]
+namespace MuR.Droid
 {
     class FileSystemImplementation : IFileSystem
     {
