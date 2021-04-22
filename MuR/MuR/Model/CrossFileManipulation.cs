@@ -29,7 +29,7 @@ namespace MuR.Model
         /// Загрузить файлы во внешний кэш приложения
         /// </summary>
         /// <param name="files">файлы, которые необходимо загрузить</param>
-        internal static void LoadToCache(params FileResult[] files)
+        internal async static void LoadToCache(params FileResult[] files)
         {
             FileInfo file;
             foreach (var item in files)
@@ -39,10 +39,12 @@ namespace MuR.Model
                 if (!File.Exists(filesPath))
                 {
                     File.WriteAllBytes(filesPath, File.ReadAllBytes(file.FullName));
-
-                    MediaManager.Library.IMediaItem mediaItem = CrossMediaManager.Current.Extractor.CreateMediaItem(file).Result;
-                    Audio audio = new Audio() { NameAudio = mediaItem.Title, Subtitle = mediaItem.DisplaySubtitle, UriFile = mediaItem.FileName, UriImage = "Resources/drawable/examle2.png" }; // изменить
-                    App.Database.InsertIntoTable<Audio>(audio).Wait();
+                }
+                MediaManager.Library.IMediaItem mediaItem = CrossMediaManager.Current.Extractor.CreateMediaItem(file).Result;
+                if (App.Database.DBConnection.FindWithQueryAsync<MuR.Model.SQLiteObjects.Audio>("SELECT * FROM audio WHERE uri_file = ?", mediaItem.FileName) == null) // если отсутсвует в базе данных
+                {   
+                    Audio audio = new Audio() { NameAudio = mediaItem.DisplayTitle, Subtitle = mediaItem.DisplaySubtitle, UriFile = mediaItem.FileName, UriImage = "Resources/drawable/examle2.png" }; // изменить
+                    await App.Database.InsertIntoTable<Audio>(audio);
                 }
             }
         }
