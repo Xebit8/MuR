@@ -39,8 +39,16 @@ namespace Murr.View
         }
         public async void LocalToPlay(object sender, EventArgs args)
         {
+            // удалить после использования
             foreach (var item in CrossFileManipulation.LoadFromExternalCache())
-                CrossMediaManager.Current.Queue.Add(item);
+            {
+                if(App.Database.DBConnection.FindWithQueryAsync<MuR.Model.SQLiteObjects.Audio>("SELECT * FROM audio WHERE uri_file = ?", item.FileName) == null)
+                   await App.Database.InsertIntoTable<MuR.Model.SQLiteObjects.Audio>(new MuR.Model.SQLiteObjects.Audio() { NameAudio = item.DisplayTitle, UriFile = item.FileName, UriImage = "Resources/drawable/examle2.png" });
+            }
+            
+
+            foreach (var item in await App.Database.SelectAllFromTable<MuR.Model.SQLiteObjects.Audio>())
+                CrossMediaManager.Current.Queue.Add(CrossFileManipulation.GetAudio(item.UriFile));
 
             play_counter++;
 
