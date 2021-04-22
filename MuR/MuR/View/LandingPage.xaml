@@ -22,7 +22,6 @@
             </ImageButton>
             <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile" Margin="10">
             </ImageButton>
-
             <Grid Grid.Row="1" Padding="0,1,0,1">
                 <Grid ColumnSpacing="0">
                     <Grid.RowDefinitions>
