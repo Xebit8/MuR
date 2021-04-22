@@ -1,12 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Murr.View.PlayerPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="Murr.View.PlayerPage"
+             BackgroundImage="Resources/drawable/background2.png"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Grid Margin="10">
+            <Label Text ="NOW PLAYING" TextColor="#FFFFFF" FontSize="30" 
+                   FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="10">
+            </Label>
+            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="ToBack">
+            </ImageButton>
+            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile">
+            </ImageButton>
+        </Grid>
+        <Grid>
+            <Frame CornerRadius="200" HorizontalOptions="Center" 
+           VerticalOptions="Start"
+           HasShadow="True"
+           Padding="0">
+                <Image Source="Resources/drawable/examle2.png" HeightRequest="275" 
+                   WidthRequest="280" 
+                   Aspect="Fill" x:Name="songPic"></Image>
+            </Frame>
+        </Grid>
+        <Grid >
+            <Label Text="" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
+            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label" IsVisible="false"></Label>
+        </Grid>
+        <Grid>
+            <Slider
+            x:Name="SongSlider"
+            HorizontalOptions="FillAndExpand"
+            Minimum="0"
+            MinimumTrackColor="HotPink"
+            ThumbColor="HotPink"
+            Value="0" />
+            <Label x:Name="PositionLabel" HorizontalOptions="End" Text="-/-"/>
+        </Grid>
+        <Grid>
+            <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
+            <ImageButton Source="Resources/drawable/play.png" BackgroundColor="Transparent" Clicked="LocalToPlay" x:Name="PlayBtn" HorizontalOptions="Center"></ImageButton>
+            <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Clicked="SkipFwd"></ImageButton>
+        </Grid>
+        <Grid>
+            <ImageButton Source="Resources/drawable/peremeshka.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="10"></ImageButton>
+            <ImageButton Source="Resources/drawable/favorite.png" BackgroundColor="Transparent"></ImageButton>
+            <ImageButton Source="Resources/drawable/repeat.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"></ImageButton>
+        </Grid>
+    </StackLayout>
+
 </ContentPage>
