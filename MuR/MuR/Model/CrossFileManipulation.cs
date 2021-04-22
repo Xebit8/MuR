@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xamarin.Essentials;
 using MediaManager;
+using Murr;
+using MuR.Model.SQLiteObjects;
 
 namespace MuR.Model
 {
@@ -24,7 +25,6 @@ namespace MuR.Model
             { DevicePlatform.UWP, new string[] { ".mp3"} }
         })
         };
-
         /// <summary>
         /// Загрузить файлы во внешний кэш приложения
         /// </summary>
@@ -37,10 +37,15 @@ namespace MuR.Model
                 file = new FileInfo(item.FullPath);
                 var filesPath = Path.Combine(Xamarin.Forms.DependencyService.Get<IFileSystem>().GetExternalDirectory(typeFiles.Audio), file.Name);
                 if (!File.Exists(filesPath))
+                {
                     File.WriteAllBytes(filesPath, File.ReadAllBytes(file.FullName));
+
+                    MediaManager.Library.IMediaItem mediaItem = CrossMediaManager.Current.Extractor.CreateMediaItem(file).Result;
+                    Audio audio = new Audio() { NameAudio = mediaItem.Title, Subtitle = mediaItem.DisplaySubtitle, UriFile = mediaItem.FileName, UriImage = "Resources/drawable/examle2.png" }; // изменить
+                    App.Database.InsertIntoTable<Audio>(audio).Wait();
+                }
             }
         }
-
         /// <summary>
         /// получить все медиа файлы(IMediaItem) из внешнего кэша приложения
         /// </summary>
@@ -60,7 +65,6 @@ namespace MuR.Model
             }
 
             return mediaItems;
-
         }
         /// <summary>
         /// поиск по имени файла
@@ -77,7 +81,6 @@ namespace MuR.Model
                 return audio;
             }
             throw new FileNotFoundException();
-
         }
     }
 }

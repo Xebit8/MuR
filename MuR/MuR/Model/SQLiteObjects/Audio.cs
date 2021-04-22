@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MuR.ViewModel;
 using SQLite;
 
 namespace MuR.Model.SQLiteObjects
@@ -34,6 +32,5 @@ namespace MuR.Model.SQLiteObjects
 
         [Column("author_id")]
         public int? AuthorId { get; set; }
-
     }
 }
