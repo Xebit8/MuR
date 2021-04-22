@@ -147,7 +147,7 @@
                             Text="CURRENT TRACK: -/-"
                             TextColor="White"
                             VerticalOptions="End"
-                            BackgroundColor="#1A222D">
+                            >
                         </Label>
                         <Label
                             x:Name="LabelCurrentTrackTitle"
@@ -159,7 +159,7 @@
                             Text="-"
                             TextColor="White"
                             VerticalOptions="Start"
-                            BackgroundColor="#1A222D">
+                            >
                         </Label>
 
                         <ImageButton

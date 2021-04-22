@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MuR.View.PlayerPage"
-             BackgroundImage="Resources/drawable/background2.png"
+             BackgroundImage="Resources/drawable/background5.png"
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
@@ -26,10 +26,9 @@
             </Frame>
         </Grid>
         <Grid >
-            <Label Text="" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
-            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label" IsVisible="false"></Label>
+            <Label Text="" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label" HorizontalTextAlignment="Center"></Label>
         </Grid>
-        <Grid>
+        <Grid Grid.Row="2">
             <Slider
             x:Name="SongSlider"
             HorizontalOptions="FillAndExpand"
@@ -38,7 +37,7 @@
             ThumbColor="HotPink"
             Value="0" 
             />
-            <Label x:Name="PositionLabel" HorizontalOptions="End" Text="-/-"/>
+            <Label x:Name="PositionLabel" Grid.Row="1" HorizontalOptions="End" Scale="1.2" Text="-/-" Margin="0,0,20,0"/>
         </Grid>
         <Grid>
             <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
