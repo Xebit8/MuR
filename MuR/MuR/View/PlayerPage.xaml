@@ -27,9 +27,17 @@
         </Grid>
         <Grid >
             <Label Text="Song Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
+            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label" IsVisible="false"></Label>
         </Grid>
         <Grid>
-            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label"></Label>
+            <Slider
+            x:Name="SongSlider"
+            HorizontalOptions="FillAndExpand"
+            Minimum="0"
+            MinimumTrackColor="HotPink"
+            ThumbColor="HotPink"
+            Value="0" />
+            <Label x:Name="PositionLabel" HorizontalOptions="End" Text="-/-"/>
         </Grid>
         <Grid>
             <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
