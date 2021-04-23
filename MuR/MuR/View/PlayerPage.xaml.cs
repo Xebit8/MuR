@@ -39,6 +39,13 @@ namespace MuR.View
         }
         public async void LocalToPlay(object sender, EventArgs args)
         {
+            // удалить после использования
+            foreach (var item in CrossFileManipulation.LoadFromExternalCache())
+            {
+                MuR.Model.SQLiteObjects.Audio audio = await App.Database.DBConnection.FindWithQueryAsync<MuR.Model.SQLiteObjects.Audio>("SELECT * FROM audio WHERE uri_file = ?", item.FileName);
+                if (audio == null)
+                    await App.Database.InsertIntoTable<MuR.Model.SQLiteObjects.Audio>(new MuR.Model.SQLiteObjects.Audio() { NameAudio = item.DisplayTitle, UriFile = item.FileName, UriImage = "Resources/drawable/examle2.png" });
+            }
 
             foreach (var item in await App.Database.SelectAllFromTable<MuR.Model.SQLiteObjects.Audio>())
                 CrossMediaManager.Current.Queue.Add(CrossFileManipulation.GetAudio(item.UriFile));
@@ -82,10 +89,14 @@ namespace MuR.View
         private void Repeat(object sender, EventArgs args)
         {
             if (CrossMediaManager.Current.RepeatMode == RepeatMode.All)
-                CrossMediaManager.Current.RepeatMode = RepeatMode.Off;
+            { CrossMediaManager.Current.RepeatMode = RepeatMode.Off; }
             else if (CrossMediaManager.Current.RepeatMode == RepeatMode.Off)
-                CrossMediaManager.Current.RepeatMode = RepeatMode.All;
+            { CrossMediaManager.Current.RepeatMode = RepeatMode.All; }
         }
+        //private async void ClearAll(object sender, EventArgs args)
+        //{
+            //CrossMediaManager.Current.Queue.Clear;
+        //} 
         private void SetupCurrentMediaDetails(IMediaItem currentMediaItem)
         {
             // Set up Media item details in UI
@@ -120,16 +131,18 @@ namespace MuR.View
             PositionLabel.Text = $"{currentPlaybackPosition.ToString(formattingPattern)}/{fullLengthString}";
 
             SongSlider.Value = currentPlaybackPosition.Ticks;
+
+            
         }
         private void Current_MediaItemChanged(object sender, MediaItemEventArgs e)
         {
             SetupCurrentMediaDetails(e.MediaItem);
         }
-        private void Current_PositionChanged(object sender, PositionChangedEventArgs e)
+        private void Current_PositionChanged(object sender, PositionChangedEventArgs args)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                SetupCurrentMediaPositionData(e.Position);
+                SetupCurrentMediaPositionData(args.Position);
             });
         }
 
@@ -143,6 +156,11 @@ namespace MuR.View
         private async void ToBack(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private void SongSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+
         }
     }
 }
