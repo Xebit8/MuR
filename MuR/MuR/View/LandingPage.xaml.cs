@@ -100,7 +100,9 @@ namespace Murr.View
         }
         public async void ToPlayerPage(object sender, EventArgs args)
         {
-                await Navigation.PushAsync(new PlayerPage());
+            foreach (var item in await App.Database.SelectAllFromTable<MuR.Model.SQLiteObjects.Audio>())
+                CrossMediaManager.Current.Queue.Add(CrossFileManipulation.GetAudio(item.UriFile));
+            await Navigation.PushAsync(new PlayerPage());
         }
 
     }
