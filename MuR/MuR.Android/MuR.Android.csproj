@@ -126,15 +126,6 @@
     <AndroidResource Include="Resources\drawable\examle.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\blacklisted.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bacgplaylist.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bgplayer.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\backward.svg" />
   </ItemGroup>
   <ItemGroup>
