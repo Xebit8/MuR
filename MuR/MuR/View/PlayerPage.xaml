@@ -1,19 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Murr.View.PlayerPage"
-             BackgroundImage="Resources/drawable/background2.png"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="MuR.View.PlayerPage"
+             BackgroundColor="LightBlue"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
     <StackLayout>
         <Grid Margin="10">
-            <Label Text ="NOW PLAYING" TextColor="#FFFFFF" FontSize="30" 
+            <Label Text ="NOW PLAYING" TextColor="Brown" FontSize="30" 
                    FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="10">
             </Label>
-            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="ToBack">
-            </ImageButton>
-            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile">
-            </ImageButton>
+            <svg:SvgCachedImage Source="playmenu.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="Start">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ToBack"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <svg:SvgCachedImage Source="find.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="End">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PickAudioFile"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
         </Grid>
         <Grid>
             <Frame CornerRadius="200" HorizontalOptions="Center" 
@@ -26,31 +35,59 @@
             </Frame>
         </Grid>
         <Grid >
-            <Label Text="{Binding Title, Mode=OneTime}" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
-            <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label" IsVisible="false"></Label>
+            <Label Text="{Binding Title, Mode=OneTime}" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label" TextColor="Brown" HorizontalTextAlignment="Center"></Label>
         </Grid>
-        <Grid>
+        <Grid Grid.Row="2">
             <Slider
             x:Name="SongSlider"
             HorizontalOptions="FillAndExpand"
             Minimum="0"
-            MinimumTrackColor="HotPink"
-            ThumbColor="HotPink"
+            MinimumTrackColor="Black"
+            ThumbColor="Brown"
             Value="{Binding CurrentDuration, Mode=TwoWay}" 
             Maximum="{Binding AudioLength.TotalSeconds, Mode=OneTime}"
             DragCompletedCommand="{Binding SliderDragCompleted}"/>
-            <Label x:Name="PositionLabel" HorizontalOptions="End" Text="{Binding TimeDuration, Mode=OneWay}"/>
+            <Label x:Name="PositionLabel" Grid.Row="1"  TextColor="Black" HorizontalOptions="Center" Scale="1.2" HorizontalTextAlignment="Center" Text="{Binding TimeDuration, Mode=OneWay}"/>
         </Grid>
         <Grid>
-            <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Command="{Binding Previous}"></ImageButton>
-            <ImageButton Source="{Binding CurrentSourceForStatus, Mode=OneWay}" BackgroundColor="Transparent" x:Name="Play" HorizontalOptions="Center" Command="{Binding Play}"></ImageButton>
-            <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Command="{Binding Next}"></ImageButton>
+            <svg:SvgCachedImage Source="backward.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="Start" Margin="20">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Previous}"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+                    <svg:SvgCachedImage Source="{Binding CurrentSourceForStatus, Mode=OneWay}" WidthRequest="72"
+            HeightRequest="72" x:Name="PlayBtn" HorizontalOptions="Center">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Play}"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <svg:SvgCachedImage Source="forwards.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="End" Margin="20">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Next}"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
         </Grid>
         <Grid>
-            <ImageButton Source="Resources/drawable/peremeshka.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="10" Command="{Binding ShuffleMode}"></ImageButton>
-            <ImageButton Source="Resources/drawable/favorite.png" BackgroundColor="Transparent" HorizontalOptions="Center"></ImageButton>
-            <ImageButton Source="Resources/drawable/repeat.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10" Command="{Binding RepeatMode}"></ImageButton>
+            <svg:SvgCachedImage Source="shuffle.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="Start" Margin="20">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShuffleMode}"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <svg:SvgCachedImage Source="like.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="Center">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <svg:SvgCachedImage Source="loop.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="End" Margin="20">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RepeatMode}"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
         </Grid>
     </StackLayout>
-
 </ContentPage>

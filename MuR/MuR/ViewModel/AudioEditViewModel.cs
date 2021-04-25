@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using MuR.Model.SQLiteObjects;
 using System.Windows.Input;
-using Murr;
+using MuR;
 
 namespace MuR.ViewModel
 {

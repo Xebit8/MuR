@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Linq;
+using MediaManager;
+using MediaManager.Media;
+using MuR.Model;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MediaManager;
-using Xamarin.Essentials;
-using MuR.Model;
-using MediaManager.Media;
 using PositionChangedEventArgs = MediaManager.Playback.PositionChangedEventArgs;
 
-namespace Murr.View
+namespace MuR.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlayerPage : ContentPage
     {
-        //int play_counter = 0;
-
+        /// <summary>
+        /// объект вида плеера
+        /// </summary>
         public MuR.ViewModel.AudioPlayerViewModel viewModel { get; protected set; }
         public PlayerPage()
         {
@@ -39,11 +40,17 @@ namespace Murr.View
         {
             CrossMediaManager.Current.Play();
         }
+        /// <summary>
+        /// выбрать файлы из файлововй системы
+        /// </summary>
+        /// <param name="sender">аргументы передаваемые с вызовом метода</param>
+        /// <param name="args">объект который вызывает метод</param>
         public async void PickAudioFile(object sender, EventArgs args)
         {
             var files = (await FilePicker.PickMultipleAsync(CrossFileManipulation.optionsPicket)).ToArray();
             CrossFileManipulation.LoadToCache(files);
         }
+        // может быть понадобится
         //public async void LocalToPlay(object sender, EventArgs args)
         //{
         //    // удалить после использования

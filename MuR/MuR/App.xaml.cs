@@ -1,10 +1,10 @@
 ﻿using MuR.Model;
-using Murr.View;
+using MuR.View;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Murr
+namespace MuR
 {
     public partial class App : Application
     {

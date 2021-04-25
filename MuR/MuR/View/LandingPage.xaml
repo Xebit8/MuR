@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Murr.View.LandingPage"           
+    x:Class="MuR.View.LandingPage"           
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=netstandard"
     mc:Ignorable="d"
-    BackgroundImage="Resources/drawable/bacgplaylist.jpg"
-    NavigationPage.HasNavigationBar="False">
+    BackgroundColor="LightBlue"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+    xmlns:viewmodel="clr-namespace:MuR.ViewModel" x:DataType="viewmodel:AudioEditViewModel">
+    
+    
     <ContentPage.Content>
         <Grid Padding="1" RowSpacing="0">
             <Grid.RowDefinitions>
@@ -18,10 +22,18 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="ToPlayerPage" Margin="10">
-            </ImageButton>
-            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile" Margin="10">
-            </ImageButton>
+            <svg:SvgCachedImage Source="playmenu.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="Start" Margin="10">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ToPlayerPage"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <svg:SvgCachedImage Source="find.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="End" Margin="10"> 
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PickAudioFile"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
             <Grid Grid.Row="1" Padding="0,1,0,1">
                 <Grid ColumnSpacing="0">
                     <Grid.RowDefinitions>
@@ -36,10 +48,15 @@
                     <Image Source="Resources/drawable/examle.png" 
                   x:Name="songPic"></Image>
                     <Grid Grid.Row="1">
-                        <Label Text="Playlist Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="playlist_label" TextColor="White"></Label>
+                        <Label Text="Playlist Name" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="playlist_label" TextColor="Brown"></Label>
+                        <Line Stroke="brown" Margin="5"
+                              X1="50"
+                              Y1="45"
+                              X2="340"
+                              Y2="45" />
                     </Grid>
                     <Grid Grid.Row="1">
-                        <Label Text="Number of songs" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="Number_of_songs_label" TextColor="White" Margin="35"></Label>
+                        <Label Text="Number of songs" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="Number_of_songs_label" TextColor="Brown" Margin="45"></Label>
                     </Grid>
                 </Grid>
             </Grid>
@@ -111,11 +128,15 @@
                                 TextColor="White"
                                 VerticalOptions="Start" />
 
-                            <ImageButton
-                                Source="Resources/drawable/play.png"
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
-                                Grid.Column="3" />
+                            <svg:SvgCachedImage Source="play.svg"  x:Name="ButtonPlayPause"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            HorizontalOptions="End">
+                                <svg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PickAudioFile"/>
+                                </svg:SvgCachedImage.GestureRecognizers>
+                            </svg:SvgCachedImage>
                         </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -145,9 +166,9 @@
                             LineBreakMode="TailTruncation"
                             MaxLines="1"
                             Text="CURRENT TRACK: -/-"
-                            TextColor="White"
+                            TextColor="Brown"
                             VerticalOptions="End"
-                            BackgroundColor="#1A222D">
+                            >
                         </Label>
                         <Label
                             x:Name="LabelCurrentTrackTitle"
@@ -157,21 +178,20 @@
                             LineBreakMode="TailTruncation"
                             MaxLines="1"
                             Text="-"
-                            TextColor="White"
+                            TextColor="Brown"
                             VerticalOptions="Start"
-                            BackgroundColor="#1A222D">
+                            >
                         </Label>
 
-                        <ImageButton
-                            Source="Resources/drawable/play.png"
-                            x:Name="ButtonPlayPause"
+                        <svg:SvgCachedImage Source="play.svg"  x:Name="ButtonPlayPause"
                             Grid.Row="0"
                             Grid.RowSpan="2"
                             Grid.Column="1"
-                            BackgroundColor="Transparent"
-                            HorizontalOptions="End"                           
-                            VerticalOptions="CenterAndExpand">
-                        </ImageButton>
+                            HorizontalOptions="End">
+                            <svg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PickAudioFile"/>
+                            </svg:SvgCachedImage.GestureRecognizers>
+                        </svg:SvgCachedImage>
                     </Grid>
                 </Frame>
             </Grid>

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using MuR.Model.SQLiteObjects;
-using MediaManager;
-using System.Windows.Input;
-using Xamarin.Forms;
 using System.ComponentModel;
+using System.Windows.Input;
+using MediaManager;
+using MuR.Model.SQLiteObjects;
+using Xamarin.Forms;
 
 namespace MuR.ViewModel
 {
@@ -27,8 +27,8 @@ namespace MuR.ViewModel
         private CurrentState currentState = default;
         private static IReadOnlyDictionary<CurrentState, string> pathSource = new Dictionary<CurrentState, string>()
         {
-            {CurrentState.Play, "Resources/drawable/pause.png" },
-            {CurrentState.Pause, "Resources/drawable/play.png" }
+            {CurrentState.Play, "pause.svg" },
+            {CurrentState.Pause, "play.svg" }
         };
 
         public event PropertyChangedEventHandler PropertyChanged;

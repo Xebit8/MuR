@@ -9,15 +9,15 @@ using Android.Views;
 using Android.Widget;
 using SQLite;
 
-[assembly: Dependency(typeof(Murr.Droid.IntroToDB))]
-namespace Murr.Droid
+[assembly: Dependency(typeof(MuR.Droid.IntroToDB))]
+namespace MuR.Droid
 {
     
     class IntroToDB : IToSQLiteDB
     {
         public SQLiteAsyncConnection GetConnection()
         {
-            var connection = new SQLiteAsyncConnection(new Murr.Droid.FileSystemImplementation().GetExternalDirectory(typeFiles.DataBase));
+            var connection = new SQLiteAsyncConnection(new MuR.Droid.FileSystemImplementation().GetExternalDirectory(typeFiles.DataBase));
             return connection;
         }
     }
