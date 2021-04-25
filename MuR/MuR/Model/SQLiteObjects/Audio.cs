@@ -7,7 +7,7 @@ namespace MuR.Model.SQLiteObjects
     /// сущность базы данных в виде аудио файла (музыка)
     /// </summary>
     [Table("audio")]
-    internal class Audio
+    public class Audio
     {
         [PrimaryKey, AutoIncrement, Column("audio_id")]
         public int AudioId { get; set; }
