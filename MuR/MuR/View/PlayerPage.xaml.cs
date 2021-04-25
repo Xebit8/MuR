@@ -34,6 +34,8 @@ namespace MuR.View
                     App.Database.DBConnection.FindWithQueryAsync<MuR.Model.SQLiteObjects.Audio>("SELECT * FROM audio WHERE uri_file = ?", media.FileName).Result, media.Duration);
 
                 this.BindingContext = viewModel;
+                if (!CrossMediaManager.Current.IsPlaying())
+                    CrossMediaManager.Current.Play();
             };
         }
         public void PlayItem()
