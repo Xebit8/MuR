@@ -20,13 +20,13 @@
            VerticalOptions="Start"
            HasShadow="True"
            Padding="0">
-                <Image Source="Resources/drawable/examle2.png" HeightRequest="275" 
+                <Image Source="{Binding UriImage, Mode=OneTime}" HeightRequest="275" 
                    WidthRequest="280" 
                    Aspect="Fill" x:Name="songPic"></Image>
             </Frame>
         </Grid>
         <Grid >
-            <Label Text="" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
+            <Label Text="{Binding Title, Mode=OneTime}" FontSize="25" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="song_label"></Label>
             <Label Text="Singer Name" FontSize="30" FontAttributes="Bold,Italic" HorizontalOptions="Center" Padding="35" x:Name="artist_label" IsVisible="false"></Label>
         </Grid>
         <Grid>
@@ -36,18 +36,20 @@
             Minimum="0"
             MinimumTrackColor="HotPink"
             ThumbColor="HotPink"
-            Value="0" />
-            <Label x:Name="PositionLabel" HorizontalOptions="End" Text="-/-"/>
+            Value="{Binding CurrentDuration, Mode=TwoWay}" 
+            Maximum="{Binding AudioLength.TotalSeconds, Mode=OneTime}"
+            DragCompletedCommand="{Binding SliderDragCompleted}"/>
+            <Label x:Name="PositionLabel" HorizontalOptions="End" Text="{Binding TimeDuration, Mode=OneWay}"/>
         </Grid>
         <Grid>
-            <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Clicked="SkipBack"></ImageButton>
-            <ImageButton Source="Resources/drawable/play.png" BackgroundColor="Transparent" Clicked="LocalToPlay" x:Name="PlayBtn" HorizontalOptions="Center"></ImageButton>
-            <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Clicked="SkipFwd"></ImageButton>
+            <ImageButton Source="Resources/drawable/previus.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="20" Command="{Binding Previous}"></ImageButton>
+            <ImageButton Source="{Binding CurrentSourceForStatus, Mode=OneWay}" BackgroundColor="Transparent" x:Name="Play" HorizontalOptions="Center" Command="{Binding Play}"></ImageButton>
+            <ImageButton Source="Resources/drawable/next.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="20" Command="{Binding Next}"></ImageButton>
         </Grid>
         <Grid>
-            <ImageButton Source="Resources/drawable/peremeshka.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="10"></ImageButton>
-            <ImageButton Source="Resources/drawable/favorite.png" BackgroundColor="Transparent"></ImageButton>
-            <ImageButton Source="Resources/drawable/repeat.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"></ImageButton>
+            <ImageButton Source="Resources/drawable/peremeshka.png" BackgroundColor="Transparent"  HorizontalOptions="Start" Margin="10" Command="{Binding ShuffleMode}"></ImageButton>
+            <ImageButton Source="Resources/drawable/favorite.png" BackgroundColor="Transparent" HorizontalOptions="Center"></ImageButton>
+            <ImageButton Source="Resources/drawable/repeat.png" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10" Command="{Binding RepeatMode}"></ImageButton>
         </Grid>
     </StackLayout>
 
