@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using MediaManager;
 using System.IO;
+using FFImageLoading.Forms.Platform;
 
 namespace MuR.Droid
 {
@@ -25,14 +26,16 @@ namespace MuR.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);
-
-            ReWriteDataBase(new FileSystemImplementation());
+          
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            var ignore = typeof(FFImageLoading.Svg.Forms.SvgCachedImage);
+            LoadApplication(new App());
 
             LoadApplication(new App());
-            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(0, 0, 0));
-            Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(0, 0, 0));
+            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(173, 216, 230));
+            Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(173, 216, 230));
         }
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+            public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 

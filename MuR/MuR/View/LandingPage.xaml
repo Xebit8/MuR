@@ -8,7 +8,11 @@
     xmlns:system="clr-namespace:System;assembly=netstandard"
     mc:Ignorable="d"
     BackgroundImage="Resources/drawable/bacgplaylist.jpg"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+    xmlns:viewmodel="clr-namespace:MuR.ViewModel" x:DataType="viewmodel:AudioEditViewModel">
+    
+    
     <ContentPage.Content>
         <Grid Padding="1" RowSpacing="0">
             <Grid.RowDefinitions>
@@ -18,10 +22,18 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <ImageButton HorizontalOptions="Start" Source="Resources/drawable/menu3.png" BackgroundColor="Transparent" Clicked="ToPlayerPage" Margin="10">
-            </ImageButton>
-            <ImageButton HorizontalOptions="End" Source="Resources/drawable/find.png" BackgroundColor="Transparent" Clicked="PickAudioFile" Margin="10">
-            </ImageButton>
+            <svg:SvgCachedImage Source="menu.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="Start">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ToPlayerPage"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <svg:SvgCachedImage Source="folder.svg" WidthRequest="72"
+            HeightRequest="72" HorizontalOptions="End">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PickAudioFile"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
             <Grid Grid.Row="1" Padding="0,1,0,1">
                 <Grid ColumnSpacing="0">
                     <Grid.RowDefinitions>

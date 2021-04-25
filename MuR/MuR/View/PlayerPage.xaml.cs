@@ -54,19 +54,19 @@ namespace MuR.View
 
             if (play_counter == 0)
             {
-                PlayBtn.Source = "Resources/drawable/pause.png";
+                PlayBtn.Source = "Resources/drawable/pause.svg";
 
                 await CrossMediaManager.Current.Play();
             }
             else if (play_counter % 2 != 0)
             {
-                PlayBtn.Source = "Resources/drawable/pause.png";
+                PlayBtn.Source = "Resources/drawable/pause.svg";
 
                 await CrossMediaManager.Current.PlayPause();
             }
             else if (play_counter % 2 == 0)
             {
-                PlayBtn.Source = "Resources/drawable/play.png";
+                PlayBtn.Source = "Resources/drawable/play.svg";
 
                 await CrossMediaManager.Current.Pause();
             }
