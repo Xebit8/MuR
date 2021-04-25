@@ -4,6 +4,7 @@ using System.ComponentModel;
 using MuR.Model.SQLiteObjects;
 using Xamarin.Forms;    
 using System.Collections.ObjectModel;
+using MuR;
 
 namespace MuR.ViewModel
 {
@@ -22,7 +23,7 @@ namespace MuR.ViewModel
         public INavigation Navigation { get; set; }
         public AudioListViewModel()
         {
-            music = new ObservableCollection<Audio>(Murr.App.Database.SelectAllFromTable<Audio>().Result);
+            music = new ObservableCollection<Audio>(App.Database.SelectAllFromTable<Audio>().Result);
             SelectAudioItem = new Command(SelectItem);
         }
         public Audio SelectAudio

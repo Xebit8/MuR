@@ -18027,7 +18027,7 @@ namespace MuR.Droid
 			public const int design_snackbar_background = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int examle = 2131165324;
+			public const int examle2 = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
 			public const int exo_controls_fastforward = 2131165325;

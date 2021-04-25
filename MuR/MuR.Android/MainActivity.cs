@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 using Android.App;
 using Android.Content.PM;
@@ -26,12 +27,14 @@ namespace MuR.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CrossMediaManager.Current.Init(this);
-          
+
+            ReWriteDataBase(new FileSystemImplementation());
+
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             var ignore = typeof(FFImageLoading.Svg.Forms.SvgCachedImage);
             LoadApplication(new App());
 
-            LoadApplication(new App());
+            //LoadApplication(new App());
             Window.SetStatusBarColor(Android.Graphics.Color.Rgb(173, 216, 230));
             Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(173, 216, 230));
         }
