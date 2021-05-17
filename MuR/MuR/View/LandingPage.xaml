@@ -7,10 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=netstandard"
     mc:Ignorable="d"
-    x:Name="PlaylistPage"
     BackgroundColor="LightBlue"
     NavigationPage.HasNavigationBar="False"
-    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" >
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+    x:Name="PlaylistPage">
+
+
     <ContentPage.Content>
         <Grid Padding="1" RowSpacing="0">
             <Grid.RowDefinitions>
@@ -27,25 +29,116 @@
                 </svg:SvgCachedImage.GestureRecognizers>
             </svg:SvgCachedImage>
             <svg:SvgCachedImage Source="find.svg" WidthRequest="72"
-            HeightRequest="72" HorizontalOptions="End" Margin="10"> 
+            HeightRequest="72" HorizontalOptions="End" Margin="10">
                 <svg:SvgCachedImage.GestureRecognizers>
-                    <TapGestureRecognizer/>
+                    <TapGestureRecognizer Tapped="PickAudioFile"/>
                 </svg:SvgCachedImage.GestureRecognizers>
             </svg:SvgCachedImage>
+            <Grid Grid.Row="1" Padding="0,1,0,1">
+                <Grid ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="{Binding PathImage}" 
+                  x:Name="songPic"></Image>
+                    <Grid Grid.Row="1">
+                        <Label Text="{Binding NamePlaylist}" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="playlist_label" TextColor="Brown"></Label>
+                        <Line Stroke="brown" Margin="5"
+                              X1="50"
+                              Y1="45"
+                              X2="340"
+                              Y2="45" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Label Text="{Binding CountAudio}" FontSize="35" FontAttributes="Bold,Italic" HorizontalOptions="Center" x:Name="Number_of_songs_label" TextColor="Brown" Margin="45"></Label>
+                    </Grid>
+                </Grid>
+            </Grid>
 
             <CollectionView
                 x:Name="CollectionView"
-                ItemsSource="{Binding Music}"
                 Grid.Row="2"
+                ItemsSource="{Binding Music}"
                 ItemsLayout="VerticalList"
-                VerticalScrollBarVisibility="Never">
+                VerticalScrollBarVisibility="Always">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+                        <Grid
+                            Padding="1,10,1,10"
+                            ColumnSpacing="0"
+                            RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
 
-                        <Button x:Name="ButtonPlayPause"
-                            HorizontalOptions="End" Command="{Binding BindingContext.SelectAudioItem, Source={x:Reference PlaylistPage}}" CommandParameter="{Binding}"></Button>
+                            <!--<Label
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Margin="20,0,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HeightRequest="60"
+                                HorizontalOptions="Start"
+                                Text="Number Song"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand"
+                                VerticalTextAlignment="Center" />-->
 
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Margin="0,5,0,5"
+                                WidthRequest="1"
+                                Color="Transparent" />
 
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="20,0,0,0"
+                                FontSize="Medium"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1"
+                                Text="{Binding Title}"
+                                TextColor="White"
+                                VerticalOptions="End" />
+                            <!--<Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="20,0,0,0"
+                                FontSize="Medium"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1"
+                                Text="Binding Artist"
+                                TextColor="White"
+                                VerticalOptions="Start" />-->
+                            
+                            <svg:SvgCachedImage Source="play.svg"  x:Name="ButtonPlayPause"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            HorizontalOptions="End">
+                                <svg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectAudioItem, Source={x:Reference PlaylistPage}}" CommandParameter="{Binding}"/>
+                                </svg:SvgCachedImage.GestureRecognizers>
+                            </svg:SvgCachedImage>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -97,13 +190,13 @@
                             Grid.Column="1"
                             HorizontalOptions="End">
                             <svg:SvgCachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectAudioItem}"  CommandParameter="{Binding}"/>
+                                <TapGestureRecognizer/>
                             </svg:SvgCachedImage.GestureRecognizers>
                         </svg:SvgCachedImage>
                     </Grid>
                 </Frame>
             </Grid>
-            </Grid>
-        
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
