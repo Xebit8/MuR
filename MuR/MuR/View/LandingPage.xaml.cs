@@ -2,6 +2,9 @@
 using Xamarin.Forms.Xaml;
 using System;
 using MuR.Model.SQLiteObjects;
+using Xamarin.Essentials;
+using MuR.Model;
+using System.Linq;
 
 namespace MuR.View
 {
@@ -21,6 +24,11 @@ namespace MuR.View
                 BindingContext = viewModel;
 
             InitializeComponent();
+        }
+        public async void PickAudioFile(object sender, EventArgs args)
+        {
+            var files = (await FilePicker.PickMultipleAsync(CrossFileManipulation.optionsPicket)).ToArray();
+            CrossFileManipulation.LoadToCache(files);
         }
     }
 }   

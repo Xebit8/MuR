@@ -15,7 +15,7 @@ namespace MuR.View
     {
         public async void PlayerShellContentClicked(object sender, EventArgs args)
         {
-            foreach (var item in await App.Database.SelectAllFromTable<MuR.Model.SQLiteObjects.Audio>())
+            foreach (var item in App.Database.SelectAllFromTable<MuR.Model.SQLiteObjects.Audio>())
                 CrossMediaManager.Current.Queue.Add(CrossFileManipulation.GetAudio(item.UriFile));
         }
     }

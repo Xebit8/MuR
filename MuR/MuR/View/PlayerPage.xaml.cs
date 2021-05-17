@@ -23,6 +23,7 @@ namespace MuR.View
         {
             InitializeComponent();
 
+            PlayItems(audios);
             CrossMediaManager.Current.PositionChanged += (object sender, PositionChangedEventArgs e) =>
             {
                 viewModel.Duration = e.Position;
@@ -38,6 +39,14 @@ namespace MuR.View
                 if (!CrossMediaManager.Current.IsPlaying())
                     CrossMediaManager.Current.Play();
             };
+        }
+        private void PlayItems(IList<Audio> audios)
+        {
+            foreach (Audio audio in audios)
+            {
+                CrossMediaManager.Current.Queue.Add(CrossFileManipulation.GetAudio(audio.UriFile));
+            }
+            CrossMediaManager.Current.Play();
         }
         /// <summary>
         /// выбрать файлы из файлововй системы

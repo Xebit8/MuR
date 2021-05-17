@@ -11,12 +11,18 @@ using MediaManager;
 
 namespace MuR.ViewModel
 {
+    /// <summary>
+    /// модель плейлиста
+    /// </summary>
     public class AudioListViewModel : INotifyPropertyChanged
     {
         /// <summary>
         /// коллекция аудио
         /// </summary>
         private ObservableCollection<Audio> _music;
+        /// <summary>
+        /// плейлист, к которому относятся данные аудиа
+        /// </summary>
         private Playlist playlist;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -32,15 +38,15 @@ namespace MuR.ViewModel
         public ObservableCollection<Audio> Music 
         { 
             get { return _music; }
-            protected set 
+            private set 
             {
                 if (value != null)
                     _music = value;
             } 
         }
-        public string NamePlaylist => playlist.NamePlayList;
-        public int CountAudio => _music.Count;
-        public string PathImage => playlist.UriImage;
+        public string NamePlaylist => playlist?.NamePlayList ?? "Неопределено";
+        public int CountAudio => _music?.Count ?? 0;
+        public string PathImage => playlist?.UriImage ?? "Resources/drawable/examle.png";
 
         protected void OnPropertyChange(string propName)
         {
@@ -55,14 +61,14 @@ namespace MuR.ViewModel
             if (sender is Audio audio)
             {
                 if(App.Player != null)
-                {
+                { 
                     if(CrossMediaManager.Current.PlayQueueItem(_music.IndexOf(audio)).Result)
                         await Navigation.PushAsync(App.Player);
                 }
                 else
                 {
-                    if(CrossMediaManager.Current.PlayQueueItem(_music.IndexOf(audio)).Result)
-                        await Navigation.PushAsync(new MuR.View.PlayerPage(_music));
+                    await Navigation.PushAsync(new MuR.View.PlayerPage(_music));
+                    await CrossMediaManager.Current.PlayQueueItem(_music.IndexOf(audio));
                 }
             }
         }
