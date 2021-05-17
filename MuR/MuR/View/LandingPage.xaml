@@ -65,7 +65,7 @@
                 x:Name="CollectionView"
                 Grid.Row="2"
                 ItemsLayout="VerticalList"
-                VerticalScrollBarVisibility="Never">
+                VerticalScrollBarVisibility="Always">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid
