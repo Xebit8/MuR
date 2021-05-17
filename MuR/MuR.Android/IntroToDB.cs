@@ -12,12 +12,12 @@ using SQLite;
 [assembly: Dependency(typeof(MuR.Droid.IntroToDB))]
 namespace MuR.Droid
 {
-    
+       
     class IntroToDB : IToSQLiteDB
     {
-        public SQLiteAsyncConnection GetConnection()
+        public SQLiteConnection GetConnection()
         {
-            var connection = new SQLiteAsyncConnection(new MuR.Droid.FileSystemImplementation().GetExternalDirectory(typeFiles.DataBase));
+            var connection = new SQLiteConnection(new MuR.Droid.FileSystemImplementation().GetExternalDirectory(typeFiles.DataBase));
             return connection;
         }
     }

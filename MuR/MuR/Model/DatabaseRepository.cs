@@ -16,8 +16,8 @@ namespace MuR.Model
         /// <summary> 
         /// соединение с базой данных
         /// </summary>
-        private  readonly SQLiteAsyncConnection dbConnection;
-        public SQLiteAsyncConnection DBConnection => dbConnection;
+        private  readonly SQLiteConnection dbConnection;
+        public SQLiteConnection DBConnection => dbConnection;
 
         public DatabaseRepository()
         {
@@ -28,9 +28,9 @@ namespace MuR.Model
         /// </summary>
         /// <typeparam name="T">тип на основе которого будет создаваться таблица</typeparam>
         /// <returns>была ли таблица создана</returns>
-        public async Task<CreateTableResult> CreateTable<T>() where T : new()
+        public CreateTableResult CreateTable<T>() where T : new()
         {
-            return await DBConnection.CreateTableAsync<T>();
+            return DBConnection.CreateTable<T>();
         }
         /// <summary>
         /// добавить запись в соответсвующую таблицу
@@ -38,27 +38,27 @@ namespace MuR.Model
         /// <typeparam name="T">тип на основе которого существует таблица</typeparam>
         /// <param name="insertValue">объект бд, (будет представлен в виде записи)</param>
         /// <returns>задача с > 0, если вставка оказаласть успеной, и < 0 если не удалось</returns>
-        public async Task<int> InsertIntoTable<T>(T insertValue) where T : new()
+        public int InsertIntoTable<T>(T insertValue) where T : new()
         {
-            return await DBConnection.InsertAsync(insertValue, typeof(T));
+            return DBConnection.Insert(insertValue, typeof(T));
         }
         /// <summary>
         /// получить все записи из таблицы
         /// </summary>
         /// <typeparam name="T">тип на основе которого существует таблица</typeparam>
         /// <returns>список со всеми записи таблицы в виде объекта типа T</returns>
-        public async Task<List<T>> SelectAllFromTable<T>() where T : new()
+        public IList<T> SelectAllFromTable<T>() where T : new()
         {
-            return await DBConnection.Table<T>().ToListAsync();
+            return DBConnection.Table<T>().ToList();
         }
         /// <summary>
         /// обновить запись в таблице на основе объекта типа T
         /// </summary>
         /// <typeparam name="T">тип на основе которого существует таблица</typeparam>
         /// <param name="updateValue">объект, значения которого были изменены</param>
-        public async void UpdateObjectTable<T>(T updateValue) where T : new()
+        public int UpdateObjectTable<T>(T updateValue) where T : new()
         {
-            await DBConnection.UpdateAsync(updateValue, typeof(T));
+            return DBConnection.Update(updateValue, typeof(T));
         }
     }
 }

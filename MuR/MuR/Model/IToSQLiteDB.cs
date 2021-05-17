@@ -7,6 +7,6 @@ namespace MuR.Model
     /// </summary>
     public interface IToSQLiteDB
     {
-        SQLiteAsyncConnection GetConnection();
+        SQLiteConnection GetConnection();
     }
 }
