@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using Xamarin.Essentials;
 using MediaManager;
-using MuR;
 using MuR.Model.SQLiteObjects;
 
 namespace MuR.Model
@@ -41,7 +40,7 @@ namespace MuR.Model
                     File.WriteAllBytes(filesPath, File.ReadAllBytes(file.FullName));
                 }
                 MediaManager.Library.IMediaItem mediaItem = CrossMediaManager.Current.Extractor.CreateMediaItem(file).Result;
-                if (App.Database.DBConnection.FindWithQuery<MuR.Model.SQLiteObjects.Audio>("SELECT * FROM audio WHERE uri_file = ?", mediaItem.FileName) == null) // если отсутсвует в базе данных
+                if (App.Database.SelectAllFromTable<Audio>().FirstOrDefault(audio => audio.UriFile == mediaItem.FileName) == null) // если отсутсвует в базе данных
                 {
                     Audio audio = new Audio() { NameAudio = mediaItem.DisplayTitle, Subtitle = mediaItem.DisplaySubtitle, UriFile = mediaItem.FileName, UriImage = "Resources/drawable/examle2.png" }; // изменить
                     App.Database.InsertIntoTable<Audio>(audio);

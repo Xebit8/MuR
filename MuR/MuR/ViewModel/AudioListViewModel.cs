@@ -35,6 +35,9 @@ namespace MuR.ViewModel
             _music = new ObservableCollection<Audio>(music);
             SelectAudioItem = new Command(SelectItem);
         }
+        /// <summary>
+        /// треки плейлиста
+        /// </summary>
         public ObservableCollection<Audio> Music 
         { 
             get { return _music; }
@@ -44,8 +47,17 @@ namespace MuR.ViewModel
                     _music = value;
             } 
         }
-        public string NamePlaylist => playlist?.NamePlayList ?? "Неопределено";
+        /// <summary>
+        /// Имя плейлиста
+        /// </summary>
+        public string NamePlaylist => playlist?.NamePlayList ?? "Без названия";
+        /// <summary>
+        /// Количество треков в плейлисте
+        /// </summary>
         public int CountAudio => _music?.Count ?? 0;
+        /// <summary>
+        /// ссылка на обложку плейлиста
+        /// </summary>
         public string PathImage => playlist?.UriImage ?? "Resources/drawable/examle.png";
 
         protected void OnPropertyChange(string propName)
@@ -54,7 +66,10 @@ namespace MuR.ViewModel
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        // выбор песни с передачей информации о самой песни
+        /// <summary>
+        /// выбор песни с передачей информации о самой песни
+        /// </summary>
+        /// <param name="sender">объект аудио</param>        
         private async void SelectItem(object sender)
         {
             // какой-то быдло код

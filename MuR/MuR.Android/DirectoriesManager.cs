@@ -44,7 +44,6 @@ namespace MuR.Droid
                     break;
                 default:
                     throw new MissingMemberException();
-                    break;
             }
             return externalDirectory?.Path;
         }

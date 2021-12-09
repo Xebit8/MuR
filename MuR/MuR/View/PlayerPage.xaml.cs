@@ -33,8 +33,8 @@ namespace MuR.View
                 var media = e.MediaItem;
                 viewModel = 
                 new MuR.ViewModel.AudioPlayerViewModel(
-                    App.Database.DBConnection.FindWithQuery<Audio>("SELECT * FROM audio WHERE uri_file = ?", media.FileName), media.Duration);
-
+                    App.Database.SelectAllFromTable<Audio>().First(audio => audio.UriFile == media.FileName), media.Duration);
+                
                 this.BindingContext = viewModel;
                 if (!CrossMediaManager.Current.IsPlaying())
                     CrossMediaManager.Current.Play();
